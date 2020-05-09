@@ -15,7 +15,7 @@ export default class ShotChart extends React.Component {
     displayTooltip: PropTypes.bool,
   };
 
-  componentDidMount() {
+  componentDidUpdate() {
     nba.stats
       .shots({
         PlayerID: this.props.playerId,
@@ -30,11 +30,12 @@ export default class ShotChart extends React.Component {
         }));
 
         const courtSelection = d3.select("#shot-chart");
+        courtSelection.html("");
         const chart_court = court().width(500);
         const chart_shots = shots()
-          .shotRenderThreshold(2)
-          .displayToolTips(true)
-          .displayType("hexbin");
+          .shotRenderThreshold(this.props.minCount)
+          .displayToolTips(this.props.displayTooltip)
+          .displayType(this.props.chartType);
         courtSelection.call(chart_court);
         courtSelection.datum(final_shots).call(chart_shots);
       });
