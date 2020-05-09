@@ -3,16 +3,16 @@ import nba from "../nba-client";
 import Profile from "./Profile";
 import DataViewContainer from "./DataViewContainer";
 import SearchBar from "./SearchBar";
+import { DEFAULT_PLAYER_INFO } from "../constants";
 
 export default class Main extends Component {
   state = {
-    playerInfo: {},
-    playerId: 201939,
+    playerInfo: DEFAULT_PLAYER_INFO,
   };
 
   componentDidMount() {
     window.nba = nba;
-    this.loadPlayerInfo("Stephen Curry");
+    this.loadPlayerInfo(this.state.playerInfo.fullName);
   }
 
   loadPlayerInfo = (playerName) => {
@@ -37,7 +37,7 @@ export default class Main extends Component {
         <SearchBar handleSelectPlayer={this.handleSelectPlayer} />
         <div className="player">
           <Profile playerInfo={this.state.playerInfo} />
-          <DataViewContainer playerId={this.state.playerId} />
+          <DataViewContainer playerId={this.state.playerInfo.playerId} />
         </div>
       </div>
     );

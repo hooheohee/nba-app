@@ -9,3 +9,5 @@ export const DEFAULT_PLAYER_INFO = {
   fullName: "Stephen Curry",
   teamAbbreviation: "GSW",
 };
+
+export const DEFAULT_MIN_COUNT = 2;

@@ -4,10 +4,11 @@ import { Radio, Row, Col, Switch } from "antd";
 
 import ShotChart from "./ShotChart";
 import CounterSlider from "./CounterSlider";
+import { DEFAULT_MIN_COUNT } from "../constants";
 
 export default class DataViewContainer extends Component {
   state = {
-    minCount: 2,
+    minCount: DEFAULT_MIN_COUNT,
   };
 
   onCountSliderChange = (count) => {
